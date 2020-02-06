@@ -1,0 +1,39 @@
+# Config to suit Mirabella Genio Cool White Dimmable 15w Model #1002744
+# Verified working 06 Feb 2020 on Globe purchased Nov 2019.
+
+esphome:
+  name: [Unique name of your node]
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: [Your wifi ssid]
+  password: [Your wifi password]
+  manual_ip:
+   static_ip: [IP for your network config]
+   gateway: [Gateway for your network config]
+   subnet: [Subnet mask for your network config]
+   dns1: [Primary DNS for your network config]
+   dns2: [Secondary DNS for your network config]
+
+logger:
+
+api:
+
+ota:
+
+web_server: 
+ port: 80
+ 
+light:
+  - platform: monochromatic
+    name: [Unique name of your node]
+    id: [Unique ID of your node]
+    output: output_component1
+    restore_mode: ALWAYS_ON
+    
+output:
+  - platform: esp8266_pwm
+    id: output_component1
+    pin: GPIO5
+ 
