@@ -1,0 +1,114 @@
+# ESPHome Config to suit Mirabella Genio RGB+Warm White 9w Model #1002339
+# Verified working 06 Feb 2020 on Globe purchased Nov 2019.
+esphome:
+  name: [Unique name of your node]
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: [Your wifi ssid]
+  password: [Your wifi password]
+  manual_ip:
+   static_ip: [IP for your network config]
+   gateway: [Gateway for your network config]
+   subnet: [Subnet mask for your network config]
+   dns1: [Primary DNS for your network config]
+   dns2: [Secondary DNS for your network config]
+
+logger:
+
+api:
+
+ota:
+
+web_server:
+  port: 80 
+  
+output:
+  - platform: esp8266_pwm
+    id: output_red
+    pin: GPIO4
+  - platform: esp8266_pwm
+    id: output_green
+    pin: GPIO12
+  - platform: esp8266_pwm
+    id: output_blue
+    pin: GPIO14
+  - platform: esp8266_pwm
+    id: output_white
+    pin: GPIO5
+
+light:
+  - platform: rgbw
+    name: [Unique name of your node]
+    id: [Unique ID of your node]
+    red: output_red
+    green: output_green
+    blue: output_blue
+    white: output_white
+    effects:
+      - strobe:
+          name: 6 Colour Change
+          colors:
+              #Red
+            - state: True
+              brightness: 60%
+              red: 100%
+              green: 0%
+              blue: 0%
+              white: 0%
+              duration: 5s
+            - state: False
+              duration: 1ms
+              #Green
+            - state: True
+              brightness: 60%
+              red: 0%
+              green: 100%
+              blue: 0%
+              white: 0%
+              duration: 5s
+            - state: False
+              duration: 1ms
+              #Blue
+            - state: True
+              brightness: 60%
+              red: 0%
+              green: 0%
+              blue: 100%
+              white: 0%
+              duration: 5s
+            - state: False
+              duration: 1ms
+              #Pink
+            - state: True
+              brightness: 60%
+              red: 100%
+              green: 0.06%
+              blue: 60%
+              white: 0%
+              duration: 5s
+            - state: False
+              duration: 1ms
+              #Yellow
+            - state: True
+              brightness: 60%
+              red: 100%
+              green: 100%
+              blue: 0%
+              white: 0%
+              duration: 5s
+            - state: False
+              duration: 1ms
+              #Light blue
+            - state: True
+              brightness: 60%
+              red: 0%
+              green: 100%
+              blue: 100%
+              white: 0%
+              duration: 5s
+            - state: False
+              duration: 1ms
+
+    restore_mode: ALWAYS_ON
