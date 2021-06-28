@@ -40,7 +40,7 @@ switch:
       number: GPIO4
       inverted: true
   - platform: gpio
-    name: "Mirabella Genio Smart Plug"
+    name: "[Your Unique Device Name]"
     pin: GPIO12
     id: relay
     # Turn on red LED
