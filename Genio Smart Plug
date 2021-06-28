@@ -1,0 +1,51 @@
+# ESPHOME Config to suit Mirabella Genio Smart Plug
+# Verified working 28 Jun 2021 on plug purchased Mar 2019
+esphome:
+  name: [Unique name of your node]
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: '[Your wifi ssid]'
+  password: '[Your wifi password]'
+  manual_ip:
+   static_ip: [IP for your network config]
+   gateway: [Gateway for your network config]
+   subnet: [Subnet mask for your network config]
+   dns1: [Primary DNS for your network config]
+   dns2: [Secondary DNS for your network config]
+   
+logger:
+  
+api:
+  
+ota:
+  
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO13
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Power Button"
+    on_press:
+      - switch.toggle: relay
+  - platform: status
+    name: Status
+    
+switch:
+  - platform: gpio
+    id: red_led
+    pin:
+      number: GPIO4
+      inverted: true
+  - platform: gpio
+    name: "Mirabella Genio Smart Plug"
+    pin: GPIO12
+    id: relay
+    # Turn on red LED
+    on_turn_on:
+      - switch.turn_on: red_led
+    # Turns off red LED
+    on_turn_off:
+      - switch.turn_off: red_led
